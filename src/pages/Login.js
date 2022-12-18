@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Container from "react-bootstrap/esm/Container";
 import { MainLayout } from "../components/mainLayout/MainLayout";
 import Button from "react-bootstrap/Button";
@@ -9,27 +9,43 @@ import { CustomField } from "../components/customFields/CustomField";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+
+  const emailRef = useRef("");
+  const pinRef = useRef("")
+
+const handleOnSubmit = e => {
+  e.preventDefault();
+  const LoginObj = {
+    email : emailRef.current.value,
+    pin : pinRef.current.value
+  }
+
+  console.log(LoginObj)
+  
+
+}
+
+
   const inputFields = [
-    // {
-    //   label: "Full Name",
-    //   placeholder: "Ram",
-    //   name: "name",
-    //   required: true,
-    //   type: "text",
-    // },
     {
       label: "Email",
       placeholder: "ram@gmail.com",
       name: "email",
       required: true,
       type: "text",
+      forwaredRef:emailRef,
     },
     {
-      label: "Password",
-      placeholder: "********",
-      name: "password",
+      label: "Pin",
+      placeholder: "****",
+      name: "pin",
       type: "password",
       required: true,
+      minLength: "4",
+      maxLength: "4",
+      forwaredRef:pinRef,
+
+      
     },
   ];
   return (
@@ -49,7 +65,7 @@ const Login = () => {
               <h2>
                 <i class="fa-solid fa-house-user"></i>Login
               </h2>
-              <Form>
+              <Form onSubmit={handleOnSubmit}>
                 {inputFields.map((item, i) => (
                   <CustomField key={i} {...item} />
                 ))}
