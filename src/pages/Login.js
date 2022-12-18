@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import { CustomField } from "../components/customFields/CustomField";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const inputFields = [
@@ -58,6 +59,10 @@ const Login = () => {
                   </Button>
                 </div>
               </Form>
+              <div className="text-end">
+               New to here?
+                <Link to="/register">Register</Link>
+              </div>
             </div>
           </Col>
         </Row>
